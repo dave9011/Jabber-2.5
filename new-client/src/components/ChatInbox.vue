@@ -17,13 +17,13 @@ function isOwnMessage(msg: Message) {
 
 <template>
     <div>
-        <div class="chat-messages-hold">
-            <div class="chat_message" v-for="message in sortedMessages"
+        <div class="inbox-container">
+            <div class="inbox-line-item" v-for="message in sortedMessages"
                 v-bind:class="{ 'own-message': isOwnMessage(message) }">
                 <div class="message">
                     {{ message.message }}
                 </div>
-                <div class="message-info">
+                <div class="message-details">
                     {{ message.name }} {{ message.time }}
                 </div>
             </div>
@@ -31,8 +31,8 @@ function isOwnMessage(msg: Message) {
     </div>
 </template>
 
-<style scoped>
-.chat-messages-hold {
+<style scoped lang="less">
+.inbox-container {
     /* TODO: figure out how to properly reference this URL */
     background: url('../assets/sports.png');
     display: flex;
@@ -43,52 +43,43 @@ function isOwnMessage(msg: Message) {
     width: 100%;
 }
 
-.chat_message {
+.inbox-line-item {
     margin-bottom: 15px;
     max-width: 80%;
     word-break: break-all;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .message {
+        color: #f6f6f6;
+        background: #f35858;
+        border-radius: 6px;
+        display: inline-block;
+        font-size: 13px;
+        padding: 10px 20px;
+    }
+
+    &.own-message {
+        align-self: flex-end;
+        color: white;
+
+        .message {
+            background: #5ba4ff;
+        }
+    }
+
+    .message-details {
+        color: #acacac;
+        font-size: 11px;
+        padding: 3px 0 0 2px;
+    }
 }
 
-.chat_message:last-of-type {
-    margin-bottom: 0;
-}
-
-.chat_message>img {
+.inbox-line-item>img {
     max-width: 50%;
     max-height: 250px;
     margin-top: 6px;
-}
-
-.chat_message.own-message {
-    align-self: flex-end;
-    color: white;
-}
-
-.chat_message.own-message .message {
-    background: #5ba4ff;
-}
-
-.chat_message.own-message .message span {
-    color: #211b1b;
-}
-
-.chat_message .message-info {
-    color: #acacac;
-    font-size: 11px;
-    padding: 3px 0 0 2px;
-}
-
-.chat_message.own-message .message-info {
-    padding: 3px 2px 0 0;
-    text-align: right;
-}
-
-.message {
-    color: #f6f6f6;
-    background: #f35858;
-    border-radius: 6px;
-    display: inline-block;
-    font-size: 13px;
-    padding: 10px 20px;
 }
 </style>

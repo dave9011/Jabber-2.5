@@ -9,7 +9,7 @@ const statusStore = useStatusStore();
     <div class="chat_status">Status: <span>{{ statusStore.status.connected }}</span></div>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 .chat_status {
     background-color: #1d1d38;
     border-top: 1px solid #1d1d38;

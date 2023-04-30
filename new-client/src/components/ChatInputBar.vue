@@ -24,7 +24,7 @@ function submitMessage() {
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 .chat_area {
     background: #f4f4f4;
     border: none;
