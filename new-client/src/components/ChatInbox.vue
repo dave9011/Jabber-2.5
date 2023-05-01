@@ -1,14 +1,7 @@
 <script setup lang="ts">
-interface Message {
-    message: string;
-    name: string;
-    time: string;
-}
+import { useChatsStore, type Message } from '@/stores/chat';
 
-const sortedMessages: Message[] = [
-    { message: 'test1', name: 'Dave', time: 'today' },
-    { message: 'test2', name: 'Ash', time: 'today' }
-];
+const chatStore = useChatsStore();
 
 function isOwnMessage(msg: Message) {
     return msg.name === 'Dave';
@@ -18,13 +11,13 @@ function isOwnMessage(msg: Message) {
 <template>
     <div>
         <div class="inbox-container">
-            <div class="inbox-line-item" v-for="message in sortedMessages"
+            <div class="inbox-line-item" v-for="message in chatStore.messages"
                 v-bind:class="{ 'own-message': isOwnMessage(message) }">
                 <div class="message">
                     {{ message.message }}
                 </div>
                 <div class="message-details">
-                    {{ message.name }} {{ message.time }}
+                    {{ message.time }}
                 </div>
             </div>
         </div>
@@ -67,6 +60,10 @@ function isOwnMessage(msg: Message) {
 
         .message {
             background: #5ba4ff;
+        }
+
+        .message-details {
+            text-align: right;
         }
     }
 
