@@ -33,6 +33,7 @@ function submitMessage() {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-size: 0.9vw;
     padding: 10px 20px;
+    width: 100%;
 }
 
 .typing-indicator {
